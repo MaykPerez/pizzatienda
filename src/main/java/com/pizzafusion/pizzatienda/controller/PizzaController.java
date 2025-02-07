@@ -19,27 +19,31 @@ public class PizzaController {
     }
 
     @GetMapping("/")
-    public String home(Model model){
+    public String home(Model model) {
         model.addAttribute("nombre", "Usuario");
         return "pizza";
     }
 
     @GetMapping("/pizza")
-    public String listPizza(Model model){
-
-        List<PizzaEntity> pizzasList= new ArrayList<>();
-        pizzasList = pizzaService.getAll();
-
-/*        List<Pizzaprobe> pizzaprobeList = new ArrayList<>();
-        pizzaprobeList.add(new Pizzaprobe("peperoni", "rico"));
-        pizzaprobeList.add(new Pizzaprobe("hawaiana", "riquisimo"));
-
-        Pizzaprobe pizzaprobe = new Pizzaprobe("peperoni", "rico");
-
-        System.out.println("nombre: " + pizzaprobe.getName());
-*/
-
+    public String listPizza(Model model) {
+        List<PizzaEntity> pizzasList = pizzaService.getAll();
         model.addAttribute("pizzas", pizzasList);
         return "pizza";
+    }
+
+    @GetMapping("/principal")
+    public String showPrincipal(Model model) {
+        List<PizzaEntity> pizzasList = pizzaService.getAll();
+        List<List<PizzaEntity>> paginatedPizzas = paginateList(pizzasList, 5);
+        model.addAttribute("paginatedPizzas", paginatedPizzas);  // Cambio aquí
+        return "principal";
+    }
+
+    private List<List<PizzaEntity>> paginateList(List<PizzaEntity> list, int pageSize) {
+        List<List<PizzaEntity>> pages = new ArrayList<>();
+        for (int i = 0; i < list.size(); i += pageSize) {
+            pages.add(list.subList(i, Math.min(i + pageSize, list.size())));
+        }
+        return pages;
     }
 }
