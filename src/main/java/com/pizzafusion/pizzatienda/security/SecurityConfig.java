@@ -18,29 +18,17 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity
 public class SecurityConfig {
 
-/*
-    @Bean
-    SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-
-        http.authorizeHttpRequests(auth-> auth
-                .anyRequest().authenticated()
-        )
-                .formLogin(Customizer.withDefaults())
-                .httpBasic(Customizer.withDefaults());
-
-        return http.build();
-    }
-*/
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http
+        http.authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers("/","/login","/home","/css/**","/images/**").permitAll()
+                        .anyRequest().authenticated()
+                )
                 .csrf(Customizer.withDefaults())
                 .httpBasic(Customizer.withDefaults())
                 .formLogin(Customizer.withDefaults())
-                .authorizeHttpRequests(authorize -> authorize
-                        .anyRequest().authenticated()
-                );
+                ;
 
         return http.build();
     }
@@ -49,13 +37,13 @@ public class SecurityConfig {
     public UserDetailsService userDetailsService() {
         UserDetails admin = User.builder()
                 .username("admin")
-                .password(passwordEncoder().encode("1234")) // Contraseña encriptada
+                .password(passwordEncoder().encode("1234"))
                 .roles("ADMIN")
                 .build();
 
         UserDetails user = User.builder()
                 .username("user")
-                .password(passwordEncoder().encode("1234")) // Contraseña encriptada
+                .password(passwordEncoder().encode("1234"))
                 .roles("USER")
                 .build();
 
