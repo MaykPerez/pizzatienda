@@ -3,6 +3,7 @@ package com.pizzafusion.pizzatienda.service;
 import com.pizzafusion.pizzatienda.persistence.model.PizzaEntity;
 import com.pizzafusion.pizzatienda.persistence.repository.PizzaRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -17,5 +18,14 @@ public class PizzaService {
 
     public List<PizzaEntity> getAll(){
         return pizzaRepository.findAll();
+    }
+
+    public void savePizza(PizzaEntity pizzaEntity){
+        pizzaRepository.save(pizzaEntity);
+    }
+
+    @Transactional
+    public void deletePizza(Integer idPizza ){
+        pizzaRepository.deletePizza(idPizza);
     }
 }

@@ -4,30 +4,66 @@
     <meta charset="UTF-8">
     <title>Lista de Clientes</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        .half-screen {
+            height: 50vh; /* Cada sección ocupa la mitad de la pantalla */
+            overflow-y: auto; /* Habilita scroll si hay mucho contenido */
+        }
+    </style>
 </head>
 <body>
-<div class="container mt-4">
-    <h2 class="mb-4">Lista de Clientes</h2>
-    <table class="table table-striped">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Dirección</th>
-            <th>Email</th>
-            <th>Teléfono</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="customer : ${customers}">
-            <td th:text="${customer.idCustomer}"></td>
-            <td th:text="${customer.name}"></td>
-            <td th:text="${customer.address}"></td>
-            <td th:text="${customer.email}"></td>
-            <td th:text="${customer.phoneNumber}"></td>
-        </tr>
-        </tbody>
-    </table>
+
+<div class="container-fluid vh-100 d-flex flex-column">
+
+    <!-- Primera mitad: Tabla con scroll -->
+    <div class="half-screen border-bottom">
+        <h2 class="text-center mt-3">Lista de Clientes</h2>
+        <div class="table-responsive h-75">
+            <table class="table table-striped table-hover">
+                <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Dirección</th>
+                    <th>Email</th>
+                    <th>Teléfono</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="customer : ${customers}">
+                    <td th:text="${customer.idCustomer}"></td>
+                    <td th:text="${customer.name}"></td>
+                    <td th:text="${customer.address}"></td>
+                    <td th:text="${customer.email}"></td>
+                    <td th:text="${customer.phoneNumber}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Segunda mitad: Formulario -->
+    <div class="half-screen d-flex flex-column align-items-center justify-content-center">
+        <h2 class="mb-3">Actualizar Correo</h2>
+        <form th:action="@{/customer/update}" method="post" class="w-50">
+
+            <div class="mb-3">
+                <label for="customerId" class="form-label">ID Cliente:</label>
+                <input type="text" id="customerId" name="customerId" class="form-control"
+                       th:value="${customerId}" required pattern="\d+" title="El ID debe contener solo números">
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">Correo Electrónico:</label>
+                <input type="email" id="email" name="email" class="form-control"
+                       th:value="${email}" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Enviar</button>
+        </form>
+    </div>
+
 </div>
+
 </body>
 </html>

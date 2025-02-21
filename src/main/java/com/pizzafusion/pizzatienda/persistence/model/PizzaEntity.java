@@ -10,8 +10,6 @@ import java.io.Serializable;
 
 @Entity
 @Table(name = "pizza")
-@Getter
-@Setter
 @NoArgsConstructor
 public class PizzaEntity{
     @Id
