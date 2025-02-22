@@ -1,11 +1,14 @@
 package com.pizzafusion.pizzatienda.persistence.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Objects;
-
+@Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 public class OrderItemId implements Serializable {
@@ -28,19 +31,4 @@ public class OrderItemId implements Serializable {
     }
 
     //getters y setters
-    public Integer getIdOrder() {
-        return idOrder;
-    }
-
-    public void setIdOrder(Integer idOrder) {
-        this.idOrder = idOrder;
-    }
-
-    public Integer getIdItem() {
-        return idItem;
-    }
-
-    public void setIdItem(Integer idItem) {
-        this.idItem = idItem;
-    }
 }

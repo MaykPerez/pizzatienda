@@ -7,7 +7,8 @@ import lombok.Setter;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.io.Serializable;
-
+@Setter
+@Getter
 @Entity
 @Table(name = "pizza")
 @NoArgsConstructor
@@ -48,60 +49,4 @@ public class PizzaEntity{
                 '}';
     }
 
-
-    public Integer getIdPizza() {
-        return idPizza;
-    }
-
-    public void setIdPizza(Integer idPizza) {
-        this.idPizza = idPizza;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public int getVegetarian() {
-        return vegetarian;
-    }
-
-    public void setVegetarian(int vegetarian) {
-        this.vegetarian = vegetarian;
-    }
-
-    public int getVegan() {
-        return vegan;
-    }
-
-    public void setVegan(int vegan) {
-        this.vegan = vegan;
-    }
-
-    public int getAvailable() {
-        return available;
-    }
-
-    public void setAvailable(int available) {
-        this.available = available;
-    }
 }

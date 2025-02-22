@@ -6,7 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-
+@Setter
+@Getter
 @Entity
 @Table(name = "order_item")
 @IdClass(OrderItemId.class)
@@ -40,60 +41,4 @@ public class OrderItemEntity {
 
     //getters y setters
 
-
-    public Integer getIdOrder() {
-        return idOrder;
-    }
-
-    public void setIdOrder(Integer idOrder) {
-        this.idOrder = idOrder;
-    }
-
-    public Integer getIdItem() {
-        return idItem;
-    }
-
-    public void setIdItem(Integer idItem) {
-        this.idItem = idItem;
-    }
-
-    public Integer getIdPizza() {
-        return idPizza;
-    }
-
-    public void setIdPizza(Integer idPizza) {
-        this.idPizza = idPizza;
-    }
-
-    public Double getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Double quantity) {
-        this.quantity = quantity;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
-    public OrderEntity getOrder() {
-        return order;
-    }
-
-    public void setOrder(OrderEntity order) {
-        this.order = order;
-    }
-
-    public PizzaEntity getPizza() {
-        return pizza;
-    }
-
-    public void setPizza(PizzaEntity pizza) {
-        this.pizza = pizza;
-    }
 }
